@@ -1,5 +1,5 @@
 <h1 align="center">
-  <a href="https://www.slimframework.com/"><img src="public/images/slim-logo.jpg" alt="Pic of the Slim logo" width="600px"></a>
+  <a href="https://www.slimframework.com/"><img src="src/public/images/slim-logo.jpg" alt="Pic of the Slim logo" width="600px"></a>
 </h1>
 
 <h4 align="center">
