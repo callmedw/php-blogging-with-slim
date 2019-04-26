@@ -15,5 +15,15 @@ return function (App $app) {
         return $this->view->render($response, 'index.php', $args);
     });
 
-    
+    // GET
+    $app->get('/books/{id}', function ($request, $response, $args) {
+    // Show book identified by $args['id']
+});
+
+
+
+
+
+
+
 };
