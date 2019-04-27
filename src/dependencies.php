@@ -5,9 +5,9 @@ use Slim\App;
 return function (App $app) {
   $container = $app->getContainer();
 
-  // view renderer
+  // view 
   $container['view'] = function ($c) {
-    $settings = $c->get('settings')['renderer'];
+    $settings = $c->get('settings')['view'];
     return new \Slim\Views\PhpRenderer($settings['template_path']);
   };
 

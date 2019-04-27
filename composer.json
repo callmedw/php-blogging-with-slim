@@ -25,7 +25,11 @@
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/",
-            "App\\Model\\": "app/models"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "models": "app/models/",
         }
     },
     "config": {
