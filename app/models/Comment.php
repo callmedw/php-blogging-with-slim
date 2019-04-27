@@ -2,18 +2,19 @@
 class Comment {
 
   // add/update comment
-  function add_comment($name, $body, $comment_id = NULL) {
+  function add_comment($name, $body, $post_id, $comment_id = NULL) {
 
     if ($comment_id) {
-      $sql =  'UPDATE comments SET name = ?, body = ? WHERE id = ?';
+      $sql =  'UPDATE comments SET name = ?, body = ?, post_id = ? WHERE id = ?';
     } else {
-      $sql = 'INSERT INTO comments(name, body) VALUES(?, ?, ?)';
+      $sql = 'INSERT INTO comments(name, body, post_id) VALUES(?, ?, ?)';
     }
 
     try {
       $results = $db->prepare($sql);
       $results->bindValue(1, $name, PDO::PARAM_STR);
       $results->bindValue(2, $body, PDO::PARAM_STR);
+      $results->bindValue(3, $post_id, PDO::PARAM_STR);
       if ($comment_id) {
         $results->bindValue(3, $comment_id, PDO::PARAM_INT);
       }
@@ -25,10 +26,12 @@ class Comment {
   }
 
   // get (read) all journal comments //
-  function get_comment_list() {
-
+  function get_comment_list($post_id) {
+    $sql = 'SELECT * FROM comments WHERE post_id = ? ORDER BY date DESC';
     try {
-      return $db->query('SELECT * FROM comments ORDER BY date DESC');
+      $results = $db->prepare($sql);
+      $results->bindValue(1, $post_id, PDO::PARAM_STR);
+      $results->execute();
     } catch (Exception $e) {
       echo $e->getMessage();
       return array();
