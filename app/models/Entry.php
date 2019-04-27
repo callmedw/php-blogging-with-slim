@@ -48,7 +48,7 @@ class Entry {
     }
   }
 
-  function get_entry_list() {
+  public function get_entry_list() {
   // include 'connection.php';
     try {
       return $container['db']->query('SELECT * FROM posts ORDER BY date DESC');
@@ -58,8 +58,8 @@ class Entry {
     }
   }
 
-  // get (read) journal entry //
-  function get_journal_entry($post_id){
+  // get (read) blog entry //
+  public function get_blog_entry($post_id){
 
     $sql = 'SELECT * FROM posts WHERE id = ?';
 
@@ -74,8 +74,8 @@ class Entry {
     return $results->fetch();
   }
 
-  // delete journal entry //
-  function delete_blog_entry($post_id){
+  // delete blog entry //
+  public function delete_blog_entry($post_id){
 
     $sql = 'DELETE FROM posts WHERE id = ?';
 
