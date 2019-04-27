@@ -7,6 +7,13 @@ use Slim\Http\Response;
 return function (App $app) {
   $container = $app->getContainer();
 
+
+
+
+// $app->get('/', function($request,$response){
+// return $this->view->render($response,'home.twig');
+// });
+
   // $app->get('/[{name}]', function (Request $request, Response $response, array $args) use ($container) {
   //   // Sample log message
   //   $container->get('logger')->info("Slim-Skeleton '/' route");
