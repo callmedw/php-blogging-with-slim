@@ -11,10 +11,9 @@ class Entry {
     $this->body = $body;
   }
 
-  public function add_or_update_blog_entry($title, $date, $body, $entry_id = NULL) {
-  // include 'connection.php';
+  public function add_or_update_blog_entry($title, $date, $body, $post_id = NULL) {
 
-    if ($entry_id) {
+    if ($post_id) {
       $sql =  'UPDATE posts SET title = ?, date = ?, body = ? WHERE id = ?';
     } else {
       $sql = 'INSERT INTO posts(title, date, body) VALUES(?, ?, ?)';
@@ -25,8 +24,8 @@ class Entry {
       $results->bindValue(1, $title, PDO::PARAM_STR);
       $results->bindValue(2, $date, PDO::PARAM_STR);
       $results->bindValue(3, $body, PDO::PARAM_STR);
-      if ($entry_id) {
-        $results->bindValue(4, $entry_id, PDO::PARAM_INT);
+      if ($post_id) {
+        $results->bindValue(4, $post_id, PDO::PARAM_INT);
       }
       $results->execute();
     } catch (Exception $e) {
@@ -34,13 +33,13 @@ class Entry {
       return false;
     }
     if ($db->lastInsertId()) {
-      $entry_id = $db->lastInsertId();
+      $post_id = $db->lastInsertId();
     }
     if (!empty($tags)) {
       try {
         add_tags($tags);
         $tag_array = get_tag_ids($tags);
-        populate_entry_tags_table($tag_array, $entry_id);
+        populate_entry_tags_table($tag_array, $post_id);
       } catch (Exception $e) {
         echo $e->getMessage();
         return false;
@@ -49,8 +48,7 @@ class Entry {
     }
   }
 
-
-  function get_journal_entry_list() {
+  function get_entry_list() {
   // include 'connection.php';
     try {
       return $container['db']->query('SELECT * FROM posts ORDER BY date DESC');
@@ -60,5 +58,40 @@ class Entry {
     }
   }
 
+  // get (read) journal entry //
+  function get_journal_entry($post_id){
+
+    $sql = 'SELECT * FROM posts WHERE id = ?';
+
+    try {
+      $results = $db->prepare($sql);
+      $results->bindValue(1, $post_id, PDO::PARAM_INT);
+      $results->execute();
+    } catch (Exception $e) {
+      echo $e->getMessage();
+      return false;
+    }
+    return $results->fetch();
+  }
+
+  // delete journal entry //
+  function delete_blog_entry($post_id){
+
+    $sql = 'DELETE FROM posts WHERE id = ?';
+
+    try {
+      $results = $db->prepare($sql);
+      $results->bindValue(1, $post_id, PDO::PARAM_INT);
+      $results->execute();
+    } catch (Exception $e) {
+      echo $e->getMessage();
+      return false;
+    }
+    if ($results->rowCount() > 0 ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
 }
