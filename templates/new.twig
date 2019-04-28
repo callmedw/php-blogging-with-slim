@@ -1,14 +1,10 @@
 {% extends "base.twig" %}
 {% block title %}Create a New Entry{% endblock %}
 {% block css %}
-<link rel="stylesheet" href="../../../public/css/normalize.css">
-<link rel="stylesheet" href="../../../public/css/site.css">
+<link rel="stylesheet" href="../../public/css/normalize.css">
+<link rel="stylesheet" href="../../public/css/site.css">
 {% endblock %}
 {% block content %}
-
-  {% import "form.twig" as forms %}
-
-
 
   <section>
     <div class="container">
@@ -16,10 +12,10 @@
         <h2>Publish New Entry</h2>
         <form method="post">
           {% import "form.twig" as form %}
-          {{ form.input('title') }}
-          {{ form.input('body') }}
+            {{ form.input('title') }}
+            {{ form.textarea('body', 5) }}
           <input type="submit" value="Publish Entry" class="button">
-          <a href="#" class="button button-secondary">Cancel</a>
+          <a href="#s" class="button button-secondary">Cancel</a>
         </form>
       </div>
     </div>

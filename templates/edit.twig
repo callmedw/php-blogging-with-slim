@@ -10,12 +10,11 @@
     <div class="container">
       <div class="edit-entry">
         <h2>Edit Entry</h2>
-          <form method="post">
-            {% import "form.twig" as form %}
+        <form method="post">
+          {% import "form.twig" as form %}
             {{ form.input('title') }}
-            {{ form.input('body') }}
-            <input type="submit" value="Publish Entry" class="button">
-            <a href="#" class="button button-secondary">Cancel</a>
+            {{ form.textarea('body', 5) }}
+
           <input type="submit" value="Save Entry" class="button">
           <a href="#" class="button button-secondary">Cancel</a>
         </form>

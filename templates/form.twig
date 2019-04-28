@@ -2,7 +2,12 @@
 {% macro input(name, value, type = "text", help) %}
   <div class="form-group">
     <label for="input{{ name }}">{{ name|title }}</label>
-    <input class="form-control" type="{{ type }}" id="input{{ name }}" name="{{ name }}" value="{{ value|e }}" placeholder="Enter your {{ name }}" />
+    <input class="form-control" type="{{ type }}" id="input{{ name }}" name="{{ name }}" value="{{ value|e }}"s />
     {% if help %}<small class="form-text text-muted">{{ help }}</small>{% endif %}
   </div>
+{% endmacro %}
+
+{% macro textarea(name, rows, value) %}
+    <label for="{{ name }}">{{ name|title }}</label>
+    <textarea id="{{ name }}" name="{{ name }}" class="form-control" rows="{{ rows }}">{{ value }}</textarea>
 {% endmacro %}
