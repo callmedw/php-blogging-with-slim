@@ -5,7 +5,7 @@ use Slim\App;
 return function (App $app) {
   $container = $app->getContainer();
 
-  // view 
+  // view
   $container['view'] = function ($c) {
     $settings = $c->get('settings')['view'];
     return new \Slim\Views\PhpRenderer($settings['template_path']);
@@ -29,21 +29,10 @@ return function (App $app) {
   };
 
   $container['comment'] = function($c) {
-    return new App\Model\Comment($c->get('db'));
+    return new Comment();
   };
 
   $container['entry'] = function($c) {
-    return new App\Model\Entry($c->get('db'));
-  };
-
-  $container['errorHandler'] = function ($c) {
-    return function ($request, $response, $exception) use ($c) {
-    $data = [
-      'status' => 'error',
-      'code' => $exception->getCode(),
-      'message' => $exception->getMessage(),
-    ];
-    return $response->withJson($data, $exception->getCode());
-    };
+    return new Entry();
   };
 };

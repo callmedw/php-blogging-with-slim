@@ -5,7 +5,7 @@ class Entry {
   private $date;
   private $body;
 
-  public function __construct($title, $date, $body) {
+  public function __construct($title = null, $date = null, $body = null) {
     $this->title = $title;
     $this->date = $date;
     $this->body = $body;
@@ -48,10 +48,10 @@ class Entry {
     }
   }
 
-  public function get_entry_list() {
+  public function get_entry_list($db) {
   // include 'connection.php';
     try {
-      return $container['db']->query('SELECT * FROM posts ORDER BY date DESC');
+      $db->query('SELECT * FROM posts ORDER BY date DESC');
     } catch (Exception $e) {
       echo $e->getMessage();
       return array();

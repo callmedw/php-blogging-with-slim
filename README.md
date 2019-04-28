@@ -71,6 +71,7 @@ Additionally, the app may Exceed Expectations by including:
 * [HTML](https://www.w3.org/TR/html5/)
 * [PHP](https://php.net)
 * [Slim](https://www.slimframework.com/)
+* [Twig](https://twig.symfony.com/)
 * [MAMP](https://www.mamp.info/en/) or [Apache](https://httpd.apache.org/)
 
 ## Suggested Technologies
