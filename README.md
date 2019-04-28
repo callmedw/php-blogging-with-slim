@@ -49,13 +49,13 @@ To pass this code review with a Meets Expectations the following criteria are re
 - [ ] Models designed correctly;
   - [ ] Blog has list of entries
   - [ ] Comments has list of comments
-- [ ] PDO interfaces with the database, allowing you to add and retrieve blog entries.
-- [ ] Styling implemented with separate CSS file.
+- [x] PDO interfaces with the database, allowing you to add and retrieve blog entries.
+- [x] Styling implemented with separate CSS file.
 - [ ] Fonts have colors and faces.
 - [ ] Header fonts are larger than body fonts.
 - [ ] All routes are mapped correctly and use correct HTTP methods:
-  - [ ] Index page mapped as “/”, “/blogs”, or something similar
-  - [ ] Detail page mapped as “/blog/{id}”, “/entries/{name}” or similar
+  - [x] Index page mapped as “/”, “/blogs”, or something similar
+  - [x] Detail page mapped as “/blog/{id}”, “/entries/{name}” or similar
 
 Additionally, the app may Exceed Expectations by including:
 
