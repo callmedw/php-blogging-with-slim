@@ -1,5 +1,5 @@
 {% extends "base.twig" %}
-{% block title %}Index{% endblock %}
+{% block title %}Blog{% endblock %}
 {% block content %}
 
 <section>
@@ -8,8 +8,8 @@
 
       {% for entry in entries %}
         <article>
-          <h2><a href="detail.twig?={{ entry['id'] }}">{{ entry['title'] }}</a></h2>
-          <time datetime="2016-01-31 1:00">{{ entry['date'] }}</time>
+          <h2><a href="entries/{{ entry['id'] }}">{{ entry['title'] }}</a></h2>
+          <time datetime="{{ entry['date'] }}">{{ entry['date'] }}</time>
         </article>
       {% endfor %}
 
