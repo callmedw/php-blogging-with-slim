@@ -4,3 +4,4 @@ vendor/*
 !/logs/README.md
 
 /notes.php
+public/auto_reload/

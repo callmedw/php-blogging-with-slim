@@ -13,7 +13,7 @@
         <form method="post">
           {% import "form.twig" as form %}
             {{ form.input('title') }}
-            {{ form.textarea('body', 5) }}
+            {{ form.textarea('body') }}
           <input type="submit" value="Publish Entry" class="button">
           <a href="#s" class="button button-secondary">Cancel</a>
         </form>
