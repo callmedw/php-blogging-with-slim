@@ -1,15 +1,23 @@
 {% extends "base.twig" %}
+{% block title %}Create a New Entry{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="../../../public/css/normalize.css">
+<link rel="stylesheet" href="../../../public/css/site.css">
+{% endblock %}
 {% block content %}
+
+  {% import "form.twig" as forms %}
+
+
 
   <section>
     <div class="container">
       <div class="new-entry">
         <h2>Publish New Entry</h2>
-        <form>
-          <label for="title"> Title</label>
-          <input type="text" name="title"><br>
-          <label for="entry">Entry</label>
-          <textarea rows="5" name="entry"></textarea>
+        <form method="post">
+          {% import "form.twig" as form %}
+          {{ form.input('title') }}
+          {{ form.input('body') }}
           <input type="submit" value="Publish Entry" class="button">
           <a href="#" class="button button-secondary">Cancel</a>
         </form>
