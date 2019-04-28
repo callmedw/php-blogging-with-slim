@@ -22,9 +22,6 @@ $comment = new Comment();
 $settings = require __DIR__ . '/../src/settings.php';
 $app = new \Slim\App($settings);
 
-$loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../templates/');
-$twig = new \Twig\Environment($loader);
-
 // Set up dependencies
 $dependencies = require __DIR__ . '/../src/dependencies.php';
 $dependencies($app);
@@ -35,7 +32,7 @@ $middleware($app);
 
 // Register routes
 $routes = require __DIR__ . '/../src/routes.php';
-$routes($app, $twig);
+$routes($app);
 
 // Run app
 $app->run();
