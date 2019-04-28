@@ -1,19 +1,9 @@
 <?php
 class Entry {
 
-  private $title;
-  private $date;
-  private $body;
+  public function addOrUpdateEntry($db, $title, $date, $body, $entry_id = NULL) {
 
-  public function __construct($title = null, $date = null, $body = null) {
-    $this->title = $title;
-    $this->date = $date;
-    $this->body = $body;
-  }
-
-  public function add_or_update_blog_entry($title, $date, $body, $post_id = NULL) {
-
-    if ($post_id) {
+    if ($entry_id) {
       $sql =  'UPDATE posts SET title = ?, date = ?, body = ? WHERE id = ?';
     } else {
       $sql = 'INSERT INTO posts(title, date, body) VALUES(?, ?, ?)';
@@ -24,8 +14,8 @@ class Entry {
       $results->bindValue(1, $title, PDO::PARAM_STR);
       $results->bindValue(2, $date, PDO::PARAM_STR);
       $results->bindValue(3, $body, PDO::PARAM_STR);
-      if ($post_id) {
-        $results->bindValue(4, $post_id, PDO::PARAM_INT);
+      if ($entry_id) {
+        $results->bindValue(4, $entry_id, PDO::PARAM_INT);
       }
       $results->execute();
     } catch (Exception $e) {
@@ -44,13 +34,13 @@ class Entry {
   }
 
   // get (read) blog entry //
-  public function get_blog_entry($post_id){
+  public function getEntry($db, $entry_id){
 
     $sql = 'SELECT * FROM posts WHERE id = ?';
 
     try {
       $results = $db->prepare($sql);
-      $results->bindValue(1, $post_id, PDO::PARAM_INT);
+      $results->bindValue(1, $entry_id, PDO::PARAM_INT);
       $results->execute();
     } catch (Exception $e) {
       echo $e->getMessage();
@@ -60,13 +50,13 @@ class Entry {
   }
 
   // delete blog entry //
-  public function delete_blog_entry($post_id){
+  public function deleteEntry($db, $entry_id){
 
     $sql = 'DELETE FROM posts WHERE id = ?';
 
     try {
       $results = $db->prepare($sql);
-      $results->bindValue(1, $post_id, PDO::PARAM_INT);
+      $results->bindValue(1, $entry_id, PDO::PARAM_INT);
       $results->execute();
     } catch (Exception $e) {
       echo $e->getMessage();
