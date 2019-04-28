@@ -32,28 +32,13 @@ class Entry {
       echo $e->getMessage();
       return false;
     }
-    if ($db->lastInsertId()) {
-      $post_id = $db->lastInsertId();
-    }
-    if (!empty($tags)) {
-      try {
-        add_tags($tags);
-        $tag_array = get_tag_ids($tags);
-        populate_entry_tags_table($tag_array, $post_id);
-      } catch (Exception $e) {
-        echo $e->getMessage();
-        return false;
-      }
-      return true;
-    }
   }
 
-  public function get_entry_list($db) {
-  // include 'connection.php';
+  public function getEntryList($db) {
     try {
-      $db->query('SELECT * FROM posts ORDER BY date DESC');
+      return $db->query('SELECT * FROM posts ORDER BY date DESC');
     } catch (Exception $e) {
-      echo $e->getMessage();
+      $e->getMessage();
       return array();
     }
   }

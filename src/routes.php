@@ -12,8 +12,8 @@ return function (App $app, $twig) {
 
     $container->get('logger')->info("Slim-Skeleton '/' route");
     $db = $container->get('db');
-    $args['posts'] = $this->entry->get_entry_list($db);
-
-    return $twig->render('index.twig');
+    $args['posts'] = $this->entry->getEntryList($db);
+    error_log(print_r($args));
+    return $twig->render('index.twig', $args);
   });
 };

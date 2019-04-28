@@ -21,7 +21,7 @@ return [
     // Database
     'db' => [
       'dsn' => 'sqlite',
-      'database' => __DIR__.'/database/blog.db',
+      'database' => __DIR__ . "/../database/blog.db",
     ],
 
   ],
