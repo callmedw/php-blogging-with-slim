@@ -175,6 +175,7 @@ a.link {
 .entry-comments {
 	background: #f1f1f1;
 	padding: 70px 0;
+	margin: 70px;
 }
 .entry-comments .container {
 	background: transparent;
@@ -203,7 +204,7 @@ a.link {
 }
 .new-comment .container {
 	max-width: 700px;
-	margin: 0 auto;
+	margin: 70px auto;
 }
 
 
@@ -261,17 +262,3 @@ form textarea:hover {
 input[type=submit] {
 	margin-right: 5px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
