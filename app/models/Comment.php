@@ -2,8 +2,8 @@
 class Comment {
 
   // add comment to a blog entry
-  function addComment($name, $body, $entry_id) {
-    $sql = 'INSERT INTO comments(name, body, entry_id) VALUES(?, ?, ?)';
+  public function addComment($db, $name, $body, $entry_id) {
+    $sql = 'INSERT INTO comments(name, body, post_id) VALUES(?, ?, ?)';
 
     try {
       $results = $db->prepare($sql);
@@ -19,8 +19,8 @@ class Comment {
   }
 
   // get all blog entry comments //
-  function getEntryComments($entry_id) {
-    $sql = 'SELECT * FROM comments WHERE entry_id = ? ORDER BY date DESC';
+  public function getEntryComments($db, $entry_id) {
+    $sql = 'SELECT * FROM comments WHERE post_id = ?';
     try {
       $results = $db->prepare($sql);
       $results->bindValue(1, $entry_id, PDO::PARAM_STR);
