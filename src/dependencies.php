@@ -8,7 +8,7 @@ return function (App $app) {
   // view
   $container['view'] = function ($c) {
     $view = new \Slim\Views\Twig(__DIR__ .'/../templates/', [
-        'cache' => 'auto_reload'
+        'cache' => false
     ]);
     $router = $c->get('router');
     $uri = \Slim\Http\Uri::createFromEnvironment(new \Slim\Http\Environment($_SERVER));
