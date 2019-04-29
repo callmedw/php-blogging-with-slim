@@ -1,27 +1,27 @@
 <?php
 class Entry {
 
-  public function addOrUpdateEntry($db, $title, $date, $body, $entry_id = NULL) {
+  public function addOrUpdateEntry($db, $title, $body, $entry_id = NULL) {
 
     if ($entry_id) {
-      $sql =  'UPDATE posts SET title = ?, date = ?, body = ? WHERE id = ?';
+      $sql =  'UPDATE posts SET title = ?, body = ? WHERE id = ?';
     } else {
-      $sql = 'INSERT INTO posts(title, date, body) VALUES(?, ?, ?)';
+      $sql = 'INSERT INTO posts(title, body) VALUES(?, ?, ?)';
     }
 
     try {
       $results = $db->prepare($sql);
       $results->bindValue(1, $title, PDO::PARAM_STR);
-      $results->bindValue(2, $date, PDO::PARAM_STR);
-      $results->bindValue(3, $body, PDO::PARAM_STR);
+      $results->bindValue(2, $body, PDO::PARAM_STR);
       if ($entry_id) {
-        $results->bindValue(4, $entry_id, PDO::PARAM_INT);
+        $results->bindValue(3, $entry_id, PDO::PARAM_INT);
       }
       $results->execute();
     } catch (Exception $e) {
       echo $e->getMessage();
       return false;
     }
+    return true;
   }
 
   public function getEntryList($db) {
