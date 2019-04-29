@@ -43,10 +43,13 @@ return function (App $app) {
     $params = ['id' => $entry_id];
     $args = array_merge($args, $request->getParsedBody());
 
+    // check to make sure all fields are filled out and if yes sanitize the inputs
     if(!empty($args['title'] && !empty($args['body']))) {
       $title = $this->entry->sanitize($args['title']);
       $body = $this->entry->sanitize($args['body']);
 
+      // update - upon success take to the detail page to see changes
+      // if not successful take back to the edit post
       try {
         $this->entry->addOrUpdateEntry($database, $title, $body, $entry_id);
         $routename = "detail";
@@ -67,11 +70,15 @@ return function (App $app) {
   //// post - new ///
   $app->post('/entries/new', function (Request $request, Response $response, array $args) use ($container, $database) {
     $args = array_merge($args, $request->getParsedBody());
+
+    //check that all fields are filled and if they are sanitize the inputs
     if(!empty($args['title'] && !empty($args['body']))) {
       $container->get('logger')->notice($args['title']);
       $title = $this->entry->sanitize($args['title']);
       $body = $this->entry->sanitize($args['body']);
 
+      // try to add and if successful grab the newly created id and redirect to the detail
+      //page for the new entry if not...refresh
       try {
         $entry_id = $this->entry->addOrUpdateEntry($database, $args['title'], $args['body']);
         $entry_id = $this->entry->getLastEntryId($database);
@@ -99,6 +106,7 @@ return function (App $app) {
       $args = array_merge($args, $request->getParsedBody());
       $entry_id = $request->getAttribute('id');
 
+      // I used the entry sanitize method here to sanitize the inputs
       if(!empty($args['name'] && !empty($args['body']))) {
         $name = $this->entry->sanitize($args['name']);
         $body = $this->entry->sanitize($args['body']);
