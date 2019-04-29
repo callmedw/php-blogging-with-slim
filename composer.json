@@ -27,11 +27,6 @@
             "Tests\\": "tests/",
         }
     },
-    "autoload": {
-        "psr-4": {
-            "models": "app/models/",
-        }
-    },
     "config": {
         "process-timeout": 0,
         "sort-packages": true
