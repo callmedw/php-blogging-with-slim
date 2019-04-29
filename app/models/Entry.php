@@ -56,25 +56,4 @@ class Entry {
     }
     return $results->fetch();
   }
-
-  // delete blog entry //
-  public function deleteEntry($db, $entry_id){
-
-    $sql = 'DELETE FROM posts WHERE id = ?';
-
-    try {
-      $results = $db->prepare($sql);
-      $results->bindValue(1, $entry_id, PDO::PARAM_INT);
-      $results->execute();
-    } catch (Exception $e) {
-      echo $e->getMessage();
-      return false;
-    }
-    if ($results->rowCount() > 0 ) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
 }
