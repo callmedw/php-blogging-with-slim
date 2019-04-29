@@ -1,11 +1,11 @@
 {% extends "base.twig" %}
 {% block title %}Create a New Entry{% endblock %}
 {% block css %}
-<link rel="stylesheet" href="../../public/css/normalize.css">
-<link rel="stylesheet" href="../../public/css/site.css">
+<link rel="stylesheet" href="../css/normalize.css">
+<link rel="stylesheet" href="../css/site.css">
 {% endblock %}
 {% block content %}
-<h1> this is the new page </h1>
+
   <section>
     <div class="container">
       <div class="new-entry">
@@ -15,7 +15,7 @@
             {{ forms.input('title') }}
             {{ forms.textarea('body') }}
           <input type="submit" value="Publish Entry" class="button">
-          <a href="#s" class="button button-secondary">Cancel</a>
+          <a href="/" class="button button-secondary">Cancel</a>
         </form>
       </div>
     </div>

@@ -1,7 +1,7 @@
 
 {% macro input(name, value, type = "text", help) %}
   <div class="form-group">
-    <label for="{{ name }}">{{ name|title }}</label>
+    <label for="{{ name }}">{{ name }}</label>
     <input class="form-control" type="{{ type }}" id="{{ name }}" name="{{ name }}" value="{{ value }}" />
     {% if help %}<small class="form-text text-muted">{{ help }}</small>{% endif %}
   </div>

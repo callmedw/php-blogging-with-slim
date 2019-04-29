@@ -34,7 +34,7 @@ class Entry {
 
   public function getEntryList($db) {
     try {
-      return $db->query('SELECT * FROM posts ORDER BY date DESC LIMIT 3');
+      return $db->query('SELECT * FROM posts ORDER BY id ASC LIMIT 3');
     } catch (Exception $e) {
       $e->getMessage();
       return array();

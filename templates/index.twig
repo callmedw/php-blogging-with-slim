@@ -1,24 +1,24 @@
 {% extends "base.twig" %}
-{% block css %}
-<link rel="stylesheet" href="../public/css/normalize.css">
-<link rel="stylesheet" href="../public/css/site.css">
-{% endblock %}
 {% block title %}Blog{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="../css/normalize.css">
+<link rel="stylesheet" href="../css/site.css">
+{% endblock %}
 {% block content %}
 
-<section>
-  <div class="container">
-    <div class="entry-list">
+  <section>
+    <div class="container">
+      <div class="entry-list">
 
-      {% for entry in entries %}
-        <article>
-          <h2><a href="/entries/{{ entry['id'] }}/">{{ entry['title'] }}</a></h2>
-          <time datetime="{{ entry['date'] }}">{{ entry['date']|date('F d, Y') }}</time>
-        </article>
-      {% endfor %}
+        {% for entry in entries %}
+          <article>
+            <h2><a href="/entries/{{ entry['id'] }}">{{ entry['title'] }}</a></h2>
+            <time datetime="{{ entry['date'] }}">{{ entry['date']|date('F d, Y') }}</time>
+          </article>
+        {% endfor %}
 
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
 {% endblock %}
