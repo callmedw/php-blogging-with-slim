@@ -7,16 +7,21 @@ return function (App $app) {
   $container = $app->getContainer();
   $database = $container->get('db');
 
+//////// ENTRY ROUTES ////////
+
+  //// get - index ///
   $app->get('/', function (Request $request, Response $response, array $args) use ($container, $database) {
     $args['entries'] = $this->entry->getEntryList($database);
     return $this->view->render($response, 'index.twig', $args);
   })->setName("index");
 
+  //// get - new ///
   $app->get('/entries/new', function (Request $request, Response $response, array $args) use ($container, $database) {
     return $this->view->render($response, 'new.twig', $args);
     }
   )->setName("new");
 
+  //// get - edit ///
   $app->get('/entries/{id}/edit', function (Request $request, Response $response, array $args) use ($container, $database) {
     $entry_id = $request->getAttribute('id');
     $args['entry'] = $this->entry->getEntry($database, $entry_id);
@@ -24,12 +29,14 @@ return function (App $app) {
     }
   )->setName("edit");
 
+  //// get - detail ///
   $app->get('/entries/{id}', function (Request $request, Response $response, array $args) use ($container, $database) {
     $entry_id = $request->getAttribute('id');
     $args['entry'] = $this->entry->getEntry($database, $entry_id);
     return $this->view->render($response, 'detail.twig', $args);
   })->setName("detail");
 
+  //// post - edit ///
   $app->post('/entries/{id}/edit', function (Request $request, Response $response, array $args) use ($container, $database) {
     $entry_id = $request->getAttribute('id');
     $params = ['id' => $entry_id];
@@ -56,6 +63,7 @@ return function (App $app) {
 
   })->setName("edit.post");
 
+  //// post - new ///
   $app->post('/entries/new', function (Request $request, Response $response, array $args) use ($container, $database) {
     $args = array_merge($args, $request->getParsedBody());
 
