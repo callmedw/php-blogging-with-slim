@@ -5,7 +5,7 @@ use Slim\App;
 return function (App $app) {
   $container = $app->getContainer();
 
-  // view
+  // view - point to twig template directory for rendering views
   $container['view'] = function ($c) {
     $view = new \Slim\Views\Twig(__DIR__ .'/../templates/', [
         'cache' => false
@@ -25,6 +25,7 @@ return function (App $app) {
     return $logger;
   };
 
+  // connect to database
   $container['db'] = function($c) {
     $db = $c->get('settings')['db'];
     $pdo = new PDO($db['dsn'].':'.$db['database']);
@@ -33,6 +34,7 @@ return function (App $app) {
     return $pdo;
   };
 
+  // load classes
   $container['comment'] = function($c) {
     return new Comment();
   };
