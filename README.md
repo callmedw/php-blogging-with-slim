@@ -38,22 +38,22 @@ A blog whose main page will list blog entry titles with a title and date/time cr
 
 To pass this code review with a Meets Expectations the following criteria are required:
 
-- [ ] Index page shows 3 blog entries with titles, date/time created.
-- [ ] Detail page shows
+- [x] Index page shows 3 blog entries with titles, date/time created.
+- [x] Detail page shows
   - [x] Title
   - [x] Date
   - [x] Body
-  - [ ] Comments
+  - [x] Comments
 - [x] Add/Edit page enables the user to post new entries or edit existing entries.
-- [ ] Anonymous user is able to post comment.
-- [ ] Models designed correctly;
-  - [ ] Blog has list of entries
-  - [ ] Comments has list of comments
+- [x] Anonymous user is able to post comment.
+- [x] Models designed correctly;
+  - [x] Blog has list of entries
+  - [x] Comments has list of comments
 - [x] PDO interfaces with the database, allowing you to add and retrieve blog entries.
 - [x] Styling implemented with separate CSS file.
-- [ ] Fonts have colors and faces.
-- [ ] Header fonts are larger than body fonts.
-- [ ] All routes are mapped correctly and use correct HTTP methods:
+- [x] Fonts have colors and faces.
+- [x] Header fonts are larger than body fonts.
+- [x] All routes are mapped correctly and use correct HTTP methods:
   - [x] Index page mapped as “/”, “/blogs”, or something similar
   - [x] Detail page mapped as “/blog/{id}”, “/entries/{name}” or similar
 

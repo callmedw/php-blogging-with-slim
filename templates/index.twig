@@ -13,7 +13,7 @@
       {% for entry in entries %}
         <article>
           <h2><a href="/entries/{{ entry['id'] }}/">{{ entry['title'] }}</a></h2>
-          <time datetime="{{ entry['date'] }}">{{ entry['date'] }}</time>
+          <time datetime="{{ entry['date'] }}">{{ entry['date']|date('F d, Y') }}</time>
         </article>
       {% endfor %}
 

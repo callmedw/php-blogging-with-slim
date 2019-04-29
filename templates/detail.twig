@@ -11,7 +11,7 @@
       <div class="entry-list single">
         <article>
           <h1>{{entry['title']}}</h1>
-          <time datetime="{{entry['date']}}">{{entry['date']}}</time>
+          <time datetime="{{entry['date']}}">{{ entry['date']|date('F d, Y') }}</time>
           <div class="entry">
             {{entry['body']}}
             <p><a class="link" href="/entries/{{entry['id']}}/edit">Edit Entry</a></p>
