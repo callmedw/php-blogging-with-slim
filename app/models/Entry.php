@@ -29,7 +29,7 @@ class Entry {
       echo $e->getMessage();
       return false;
     }
-    return $db->lastInsertId();
+    return true;
   }
 
   public function getEntryList($db) {
