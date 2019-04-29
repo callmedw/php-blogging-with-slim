@@ -5,15 +5,15 @@
 <link rel="stylesheet" href="../../public/css/site.css">
 {% endblock %}
 {% block content %}
-
+<h1> this is the new page </h1>
   <section>
     <div class="container">
       <div class="new-entry">
         <h2>Publish New Entry</h2>
         <form method="post">
-          {% import "form.twig" as form %}
-            {{ form.input('title') }}
-            {{ form.textarea('body') }}
+          {% import "forms.twig" as forms %}
+            {{ forms.input('title') }}
+            {{ forms.textarea('body') }}
           <input type="submit" value="Publish Entry" class="button">
           <a href="#s" class="button button-secondary">Cancel</a>
         </form>

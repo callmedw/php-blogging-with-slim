@@ -1,0 +1,8 @@
+<div class="new-comment">
+  <form method="post">
+    {% import "forms.twig" as forms %}
+    {{ forms.input('name') }}
+    {{ forms.textarea('body')}}
+    <input type="submit" value="Add Your Comment" class="button">
+  </form>
+</div>

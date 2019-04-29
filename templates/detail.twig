@@ -1,8 +1,8 @@
 {% extends "base.twig" %}
 {% block title %}{{entry['title']}}{% endblock %}
 {% block css %}
-<link rel="stylesheet" href="../../public/css/normalize.css">
-<link rel="stylesheet" href="../../public/css/site.css">
+<link rel="stylesheet" href="../../../public/css/normalize.css">
+<link rel="stylesheet" href="../../../public/css/site.css">
 {% endblock %}
 {% block content %}
 
@@ -14,8 +14,27 @@
           <time datetime="{{entry['date']}}">{{entry['date']}}</time>
           <div class="entry">
             {{entry['body']}}
-            <p><a class="link" href="edit.html">Edit Entry</a></p>
+            <p><a class="link" href="/entries/{{entry['id']}}/edit">Edit Entry</a></p>
           </div>
+
+          <div class="entry-comments">
+            {% for comment in comments %}
+              <article>
+                {{comment['name']}}
+                {{comment['body']}}
+              </article>
+            {% endfor %}
+          </div>
+
+          <div class="new-comment">
+            <form method="post">
+              {% import "forms.twig" as forms %}
+              {{ forms.input('name') }}
+              {{ forms.textarea('body')}}
+              <input type="submit" value="Add Your Comment" class="button">
+            </form>
+          </div>
+
         </article>
       </div>
     </div>

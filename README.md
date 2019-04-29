@@ -40,11 +40,11 @@ To pass this code review with a Meets Expectations the following criteria are re
 
 - [ ] Index page shows 3 blog entries with titles, date/time created.
 - [ ] Detail page shows
-  - [ ] Title
-  - [ ] Date
-  - [ ] Body
+  - [x] Title
+  - [x] Date
+  - [x] Body
   - [ ] Comments
-- [ ] Add/Edit page enables the user to post new entries or edit existing entries.
+- [x] Add/Edit page enables the user to post new entries or edit existing entries.
 - [ ] Anonymous user is able to post comment.
 - [ ] Models designed correctly;
   - [ ] Blog has list of entries
@@ -56,13 +56,6 @@ To pass this code review with a Meets Expectations the following criteria are re
 - [ ] All routes are mapped correctly and use correct HTTP methods:
   - [x] Index page mapped as “/”, “/blogs”, or something similar
   - [x] Detail page mapped as “/blog/{id}”, “/entries/{name}” or similar
-
-Additionally, the app may Exceed Expectations by including:
-
-- [ ] Blog entries show tags.
-- [ ] Edit page includes a delete button.
-- [ ] The PDO implementation allows for deletion of blog entries.
-- [ ] Routing uses slugs
 
 ## Required Technologies
 
