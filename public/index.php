@@ -13,9 +13,6 @@ include __DIR__ . '/../app/models/Comment.php';
 
 session_start();
 
-$entry = new Entry();
-$comment = new Comment();
-
 // Instantiate the app
 $settings = require __DIR__ . '/../src/settings.php';
 $app = new \Slim\App($settings);

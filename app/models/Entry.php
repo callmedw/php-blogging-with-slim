@@ -1,16 +1,19 @@
 <?php
 class Entry {
 
+  // pull the last entered entry for redirect after new
   public function getLastEntryId($db) {
     return $db->lastInsertId();
   }
 
+  // clean any inputs before saving them to database
   public function sanitize($input) {
     return trim(filter_var($input, FILTER_SANITIZE_STRING));
   }
 
   public function addOrUpdateEntry($db, $title, $body, $entry_id = NULL) {
 
+    // sql statement depending on if we are adding or updating the entry
     if ($entry_id) {
       $sql =  'UPDATE posts SET title = ?, body = ? WHERE id = ?';
     } else {
@@ -32,6 +35,8 @@ class Entry {
     return true;
   }
 
+
+  // return an array of blog entries
   public function getEntryList($db) {
     try {
       return $db->query('SELECT * FROM posts ORDER BY id ASC LIMIT 3');
@@ -41,7 +46,7 @@ class Entry {
     }
   }
 
-  // get (read) blog entry //
+  // get blog entry //
   public function getEntry($db, $entry_id){
 
     $sql = 'SELECT * FROM posts WHERE id = ?';
