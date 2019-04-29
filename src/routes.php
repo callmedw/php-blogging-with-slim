@@ -33,6 +33,7 @@ return function (App $app) {
   $app->get('/entries/{id}', function (Request $request, Response $response, array $args) use ($container, $database) {
     $entry_id = $request->getAttribute('id');
     $args['entry'] = $this->entry->getEntry($database, $entry_id);
+    $args['comments'] = $this->comment->getEntryComments($database, $entry_id);
     return $this->view->render($response, 'detail.twig', $args);
   })->setName("detail");
 
@@ -66,8 +67,8 @@ return function (App $app) {
   //// post - new ///
   $app->post('/entries/new', function (Request $request, Response $response, array $args) use ($container, $database) {
     $args = array_merge($args, $request->getParsedBody());
-
     if(!empty($args['title'] && !empty($args['body']))) {
+      $container->get('logger')->notice($args['title']);
       $title = $this->entry->sanitize($args['title']);
       $body = $this->entry->sanitize($args['body']);
 
@@ -89,4 +90,30 @@ return function (App $app) {
     }
 
   })->setName("new.post");
+
+
+  //////// COMMENT ROUTES ////////
+
+    //// post - new ///
+    $app->post('/entries/{id}', function (Request $request, Response $response, array $args) use ($container, $database) {
+      $args = array_merge($args, $request->getParsedBody());
+      $entry_id = $request->getAttribute('id');
+
+      if(!empty($args['name'] && !empty($args['body']))) {
+        $name = $this->entry->sanitize($args['name']);
+        $body = $this->entry->sanitize($args['body']);
+
+        try {
+          $this->comment->addComment($database, $name, $body, $entry_id);
+          echo "success!";
+        } catch(Exception $e) {
+          echo 'error', $e->getMessage();
+        }
+        return $response->withRedirect($this->router->pathFor('detail', ['id' => $entry_id]));
+      } else {
+        echo "please fill out all fields";
+        return $this->view->render($response, 'detail.twig', $args);
+      }
+
+    })->setName("comment.post");
 };
