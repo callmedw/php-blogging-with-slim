@@ -1,12 +1,20 @@
 <?php
 class Entry {
 
+  public function getLastEntryId($db) {
+    return $db->lastInsertId();
+  }
+
+  public function sanitize($input) {
+    return trim(filter_var($input, FILTER_SANITIZE_STRING));
+  }
+
   public function addOrUpdateEntry($db, $title, $body, $entry_id = NULL) {
 
     if ($entry_id) {
       $sql =  'UPDATE posts SET title = ?, body = ? WHERE id = ?';
     } else {
-      $sql = 'INSERT INTO posts(title, body) VALUES(?, ?, ?)';
+      $sql = 'INSERT INTO posts(title, body) VALUES(?, ?)';
     }
 
     try {
@@ -21,7 +29,7 @@ class Entry {
       echo $e->getMessage();
       return false;
     }
-    return true;
+    return $db->lastInsertId();
   }
 
   public function getEntryList($db) {
