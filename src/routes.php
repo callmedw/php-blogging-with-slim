@@ -36,8 +36,11 @@ return function (App $app) {
     $args = array_merge($args, $request->getParsedBody());
 
     if(!empty($args['title'] && !empty($args['body']))) {
+      $title = $this->entry->sanitize($args['title']);
+      $body = $this->entry->sanitize($args['body']);
+
       try {
-        $this->entry->addOrUpdateEntry($database, $args['title'], $args['body'], $entry_id);
+        $this->entry->addOrUpdateEntry($database, $title, $body, $entry_id);
         $routename = "detail";
         echo "success!!!";
       } catch(Exception $e) {
@@ -45,10 +48,37 @@ return function (App $app) {
         echo 'error', $e->getMessage();
       }
       return $response->withRedirect($this->router->pathFor($routename, $params));
+
     } else {
       echo "please fill out all fields";
       return $response->withRedirect($this->router->pathFor("edit.post", $params));
     }
 
   })->setName("edit.post");
+
+  $app->post('/entries/new', function (Request $request, Response $response, array $args) use ($container, $database) {
+    $args = array_merge($args, $request->getParsedBody());
+
+    if(!empty($args['title'] && !empty($args['body']))) {
+      $title = $this->entry->sanitize($args['title']);
+      $body = $this->entry->sanitize($args['body']);
+
+      try {
+        $entry_id = $this->entry->addOrUpdateEntry($database, $args['title'], $args['body']);
+        $entry_id = $this->entry->getLastEntryId($database);
+        $params = ['id' => $entry_id];
+        $routename = "detail";
+        echo "success!";
+      } catch(Exception $e) {
+        $routename = "new";
+        $params = [];
+        echo 'error', $e->getMessage();
+      }
+      return $response->withRedirect($this->router->pathFor($routename, $params));
+    } else {
+      echo "please fill out all fields";
+      return $response->withRedirect($this->router->pathFor("new"));
+    }
+
+  })->setName("new.post");
 };
