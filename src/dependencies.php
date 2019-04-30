@@ -34,6 +34,11 @@ return function (App $app) {
     return $pdo;
   };
 
+  // register flash
+  $container['flash'] = function () {
+    return new \Slim\Flash\Messages();
+  };
+
   // load classes
   $container['comment'] = function($c) {
     return new Comment();

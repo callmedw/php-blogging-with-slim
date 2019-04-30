@@ -49,19 +49,18 @@ return function (App $app) {
       $body = $this->entry->sanitize($args['body']);
 
       // update - upon success take to the detail page to see changes
-      // if not successful take back to the edit post
+      // if not successful take back to the edit page
       try {
         $this->entry->addOrUpdateEntry($database, $title, $body, $entry_id);
         $routename = "detail";
-        echo "success!!!";
+        $this->flash->addMessage('global', "Success! Post has been updated!");
       } catch(Exception $e) {
         $routename = "edit.post";
-        echo 'error', $e->getMessage();
+        $this->flash->addMessage('global', 'Woops! Error' . $e->getMessage());
       }
       return $response->withRedirect($this->router->pathFor($routename, $params));
-
     } else {
-      echo "please fill out all fields";
+      $this->flash->addMessage('global', "Please fill out all fields");
       return $response->withRedirect($this->router->pathFor("edit.post", $params));
     }
 
@@ -84,15 +83,15 @@ return function (App $app) {
         $entry_id = $this->entry->getLastEntryId($database);
         $params = ['id' => $entry_id];
         $routename = "detail";
-        echo "success!";
+        $this->flash->addMessage('global', "Success! Post has been created!");
       } catch(Exception $e) {
         $routename = "new";
         $params = [];
-        echo 'error', $e->getMessage();
+        $this->flash->addMessage('global', 'Woops! Error' .$e->getMessage());
       }
       return $response->withRedirect($this->router->pathFor($routename, $params));
     } else {
-      echo "please fill out all fields";
+      $this->flash->addMessage('global', "Please fill out all fields");
       return $response->withRedirect($this->router->pathFor("new"));
     }
 
@@ -113,13 +112,13 @@ return function (App $app) {
 
         try {
           $this->comment->addComment($database, $name, $body, $entry_id);
-          echo "success!";
+          $this->flash->addMessage('global', "Success! Your comment has been added");
         } catch(Exception $e) {
-          echo 'error', $e->getMessage();
+          $this->flash->addMessage('global', 'Woops! Error' . $e->getMessage());
         }
         return $response->withRedirect($this->router->pathFor('detail', ['id' => $entry_id]));
       } else {
-        echo "please fill out all fields";
+        $this->flash->addMessage('global', "Please fill out all fields");
         return $this->view->render($response, 'detail.twig', $args);
       }
 

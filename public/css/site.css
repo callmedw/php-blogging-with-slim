@@ -262,3 +262,9 @@ form textarea:hover {
 input[type=submit] {
 	margin-right: 5px;
 }
+.flash-message {
+	text-align: center;
+	text-transform: capitalize;
+	font-size: 1em;
+	color: white;
+}

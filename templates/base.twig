@@ -21,6 +21,10 @@
       </div>
     </header>
 
+      <div class="flash-message">
+        {{ flash.getMessage('global')[0] }}
+      </div>
+      
       {% block content %}
       {% endblock %}
 
