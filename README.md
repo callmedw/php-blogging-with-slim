@@ -82,8 +82,14 @@ $ git clone https://github.com/callmedw/php-blogging-with-slim.git
 # Open in atom
 $ atom php-blogging-with-slim
 
+# Go to project directory root
+$ $ cd php-blogging-with-slim
+
+# Use composer to install packages
+$ composer install
+
 # Start MAMP localhost
-$ cd php-blogging-with-slim; php -S localhost:8080 -t public public/index.php
+$ php -S localhost:8080 -t public public/index.php
 
 ```
 
