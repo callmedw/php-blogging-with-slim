@@ -105,9 +105,13 @@ return function (App $app) {
       $args = array_merge($args, $request->getParsedBody());
       $entry_id = $request->getAttribute('id');
 
-      // I used the entry sanitize method here to sanitize the inputs
-      if(!empty($args['name'] && !empty($args['body']))) {
+      // sanitize the name input if there is a name.
+      if(!empty($args['name'])) {
         $name = $this->entry->sanitize($args['name']);
+      }
+
+      // I used the entry sanitize method here to sanitize the inputs
+      if(!empty($args['body'])) {
         $body = $this->entry->sanitize($args['body']);
 
         try {
