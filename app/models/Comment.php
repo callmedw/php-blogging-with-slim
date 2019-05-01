@@ -2,14 +2,22 @@
 class Comment {
 
   // add comment to a blog entry
-  public function addComment($db, $name, $body, $entry_id) {
-    $sql = 'INSERT INTO comments(name, body, post_id) VALUES(?, ?, ?)';
+  public function addComment($db, $body, $entry_id, $name = NULL,) {
+
+    // sql statement depending on if a name is supplied or not
+    if ($name) {
+      $sql = 'INSERT INTO comments(body, post_id, name) VALUES(?, ?, ?)';
+    } else {
+      $sql = 'INSERT INTO comments(body, post_id) VALUES(?, ?)';
+    }
 
     try {
       $results = $db->prepare($sql);
-      $results->bindValue(1, $name, PDO::PARAM_STR);
-      $results->bindValue(2, $body, PDO::PARAM_STR);
-      $results->bindValue(3, $entry_id, PDO::PARAM_STR);
+      $results->bindValue(1, $body, PDO::PARAM_STR);
+      $results->bindValue(2, $entry_id, PDO::PARAM_STR);
+      if ($name) {
+        $$results->bindValue(3, $name, PDO::PARAM_STR);
+      }
       $results->execute();
     } catch (Exception $e) {
       echo $e->getMessage();
