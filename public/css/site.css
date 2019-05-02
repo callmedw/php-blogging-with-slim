@@ -29,6 +29,7 @@ header .logo {
 	padding: 5px 10px;
 	margin: 24px 0 0 0;
 	float: left;
+	background-color: #9DDCFF;
 	text-transform: uppercase;
 	font-family: 'Noto Sans', sans-serif;
 }
@@ -59,17 +60,17 @@ footer a {
 .button {
 	padding: 8px 12px 7px 12px;
 	text-transform: uppercase;
-	background: #000;
+	background: #01FFC3;
 	border: 3px solid #000;
 	border-radius: 4px;
 	text-decoration: none;
-	color: #FFF;
+	color: #000;
 	font-weight: bold;
 	font-size: 13px;
 	font-family: 'Noto Sans', sans-serif;
 }
 .button.button-secondary {
-	background: transparent;
+	background-color: #E7DF30;
 	border-color: #000;
 	color: #000;
 }
@@ -236,6 +237,7 @@ form textarea {
 	padding:10px 13px;
 	margin-bottom: 30px;
 	border-radius: 4px;
+	background-color: #FD9FE5;
 	width: calc(100% - 32px);
 }
 .new-comment form input[type=text],
