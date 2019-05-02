@@ -108,6 +108,8 @@ return function (App $app) {
       // sanitize the name input if there is a name.
       if(!empty($args['name'])) {
         $name = $this->entry->sanitize($args['name']);
+      } else {
+        $name = "Anonymous";
       }
 
       // I used the entry sanitize method here to sanitize the inputs
@@ -115,7 +117,7 @@ return function (App $app) {
         $body = $this->entry->sanitize($args['body']);
 
         try {
-          $this->comment->addComment($database, $name, $body, $entry_id);
+          $this->comment->addComment($database, $body, $entry_id, $name);
           $this->flash->addMessage('global', "Success! Your comment has been added");
         } catch(Exception $e) {
           $this->flash->addMessage('global', 'Woops! Error' . $e->getMessage());

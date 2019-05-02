@@ -29,9 +29,7 @@
             <h2> Comments </h2>
             {% for comment in comments %}
               <article class="comment">
-                <p>
-                  {{comment['body']}}
-                </p>
+                <p> {{comment['body']}} </p>
                 <p> by: {{comment['name']}} </p>
               </article>
             {% endfor %}

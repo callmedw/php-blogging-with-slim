@@ -2,7 +2,7 @@
 class Comment {
 
   // add comment to a blog entry
-  public function addComment($db, $body, $entry_id, $name = NULL,) {
+  public function addComment($db, $body, $entry_id, $name = NULL) {
 
     // sql statement depending on if a name is supplied or not
     if ($name) {
@@ -14,9 +14,9 @@ class Comment {
     try {
       $results = $db->prepare($sql);
       $results->bindValue(1, $body, PDO::PARAM_STR);
-      $results->bindValue(2, $entry_id, PDO::PARAM_STR);
+      $results->bindValue(2, $entry_id, PDO::PARAM_INT);
       if ($name) {
-        $$results->bindValue(3, $name, PDO::PARAM_STR);
+        $results->bindValue(3, $name, PDO::PARAM_STR);
       }
       $results->execute();
     } catch (Exception $e) {
